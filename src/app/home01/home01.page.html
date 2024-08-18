@@ -1,0 +1,79 @@
+<ion-app>
+
+  <!-- Side Menu -->
+  <ion-menu side="start" menuId="first" contentId="main-content">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-button id="present-alert" (click)="alertAddForm()">
+          <ion-icon name="add-outline" slot="start" color="drak"></ion-icon>
+          เพิ่มรายการใหม่
+        </ion-button>
+        <ion-button routerLink="/summary">
+          <ion-icon name="bar-chart-outline" slot="start" color="drak"></ion-icon>
+          ดูภาพรวม
+        </ion-button>
+        <!-- Add more menu items as needed -->
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Main Content -->
+  <div class="ion-page" id="main-content">
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button menu="first"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>บันทึกการใช้จ่ายส่วนตัว</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-text-center ion-justify-content-center ion-align-items-center" [fullscreen]="true">
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">รายจ่ายส่วนตัว</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ currentDate }}</ion-card-title>
+          <ion-card-subtitle>ค่าใช้จ่ายประจำวันนี้</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item-sliding *ngFor="let tmp of items">
+              <ion-item>
+                <ion-thumbnail slot="start">
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                </ion-thumbnail>
+                <ion-label style="--color: #ffffff;">รายการ: {{tmp.category}} <br> จ่ายไป:  {{tmp.amount}} บาท <br> หมายเหตุ: {{tmp.note}}</ion-label>
+              </ion-item>
+              <ion-item-options side="end">
+                <ion-item-option color="warning" (click)="alertEditForm(tmp.id, tmp)">
+                  <ion-icon slot="start" name="create-outline"></ion-icon>
+                  Edit
+                </ion-item-option>
+                <ion-item-option id="present-alert" color="danger" (click)="deleteItem(tmp.id)">
+                  <ion-icon slot="start" name="trash-bin-outline"></ion-icon>
+                  Delete
+                </ion-item-option>
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+
+      <div class="ion-text-center ion-padding-start ion-padding-end">
+        <ion-datetime></ion-datetime>
+      </div>
+
+    </ion-content>
+  </div>
+
+</ion-app>

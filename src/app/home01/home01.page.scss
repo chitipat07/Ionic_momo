@@ -1,0 +1,127 @@
+ion-content {
+    --background: #ffffff;
+    padding: 16px; /* คงการ padding ไว้เพื่อให้มีพื้นที่ว่างรอบๆ เนื้อหา */
+  }
+  
+
+/* จัดการตำแหน่งและขนาดของ ion-card */
+ion-card {
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(140, 137, 137, 0.2);
+    border-radius: 10px;
+  }
+  
+  /* ปรับขนาดของรูปภาพใน ion-thumbnail */
+  ion-thumbnail img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  
+  /* ปรับแต่งส่วนของ ion-item */
+  ion-item {
+    --background: #453f3f;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+ /* ปรับแต่ง ion-item-options */
+ion-item-sliding ion-item-options {
+    height: 100%;
+    --background: transparent;
+    border-radius: 8px;
+    overflow: hidden; /* สำคัญ: ป้องกันไม่ให้เนื้อหาทะลุขอบที่โค้งมน */
+  }
+  
+  /* ปรับแต่ง ion-item-option */
+  ion-item-sliding ion-item-options ion-item-option {
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    --border-radius: 0; /* ป้องกันมุมโค้งซ้ำซ้อนจากตัวเลือก */
+    padding: 0 10px; /* เพิ่ม padding เพื่อให้ไอคอนและข้อความดูสมดุล */
+  }
+  
+  ion-item-sliding ion-item-options ion-item-option[color="success"] {
+    --background: #28a745; /* สีเขียวสำหรับปุ่ม Edit */
+  }
+  
+  ion-item-sliding ion-item-options ion-item-option[color="danger"] {
+    --background: #dc3545; /* สีแดงสำหรับปุ่ม Delete */
+  }
+  
+  
+  /* เพิ่มสีและปรับแต่งส่วนของ ion-title ใน toolbar */
+  ion-toolbar {
+    --background: #3880ff;
+    --color: white;
+    text-align: center;
+  }
+  
+  ion-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  /* จัดการตำแหน่งและขนาดของ ion-datetime */
+  ion-datetime {
+    max-width: 280px;
+    margin: 20px auto;
+  }
+  
+  /* เพิ่ม padding ให้กับ ion-content เพื่อให้ดูมีพื้นที่หายใจมากขึ้น */
+  ion-content {
+    padding: 16px;
+  }
+  
+  /* ปรับการแสดงผลของ ion-card-header */
+  ion-card-header {
+    background-color: #4b4a4a;
+    border-bottom: 1px solid #ccc;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  /* ปรับแต่ง ion-card-title */
+  ion-card-title {
+    font-size: 1.5em;
+    color: #fffbfb;
+  }
+  
+  /* ปรับแต่ง ion-card-subtitle */
+  ion-card-subtitle {
+    font-size: 0.9em;
+    color: #b1aeae;
+  }
+
+
+
+/* ทำให้ปุ่มมีความกว้างเท่ากัน */
+ion-menu ion-content ion-button {
+  width: 100%; /* ทำให้ปุ่มขยายเต็มพื้นที่ที่มีอยู่ */
+  --background: rgba(177, 177, 177, 0.8); /* พื้นหลังปุ่มพร้อมความโปร่งใส */
+  --color: #000000; /* สีของข้อความและไอคอน */
+  --border-radius: 8px; /* เพิ่มความโค้งมนให้กับขอบปุ่ม */
+  margin-bottom: 10px; /* เพิ่มช่องว่างระหว่างปุ่ม */
+  justify-content: start;
+  border-radius: 10px; /* จัดการให้เนื้อหาภายในปุ่มเริ่มจากด้านซ้าย */
+}
+
+/* ปรับขนาดและสีของไอคอนในปุ่ม */
+ion-menu ion-content ion-button ion-icon {
+  font-size: 20px; /* ปรับขนาดไอคอน */
+  margin-right: 8px; /* เพิ่มช่องว่างระหว่างไอคอนและข้อความ */
+}
+
+/* ปรับขนาดและสีของไอคอนในเมนู */
+ion-menu ion-content ion-list ion-button ion-icon {
+  font-size: 20px; /* ปรับขนาดไอคอน */
+  color: #ffffff; /* สีของไอคอน */
+}
+
+
+
+
+
+
+

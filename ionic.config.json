@@ -1,0 +1,11 @@
+{
+  "name": "project01",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "devServer": {
+    "host": "0.0.0.0",
+    "disableHostCheck": true
+  }
+}
