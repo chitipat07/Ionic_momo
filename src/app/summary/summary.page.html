@@ -5,6 +5,15 @@
 </ion-header>
 
 <ion-content>
+  <ion-segment [(ngModel)]="displayMode" (ionChange)="changeDisplayMode(displayMode)">
+    <ion-segment-button value="daily">
+      <ion-label>Daily</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="monthly">
+      <ion-label>Monthly</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
   <div>
     <canvas id="canvas">{{chart}}</canvas>
   </div>
