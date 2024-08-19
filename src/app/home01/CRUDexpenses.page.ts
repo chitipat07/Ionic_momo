@@ -14,37 +14,39 @@ export class CRUDexpenses {
     private router: Router
   ) { }
 
-  getDocument(collection: string, currentDate: string): Observable<any[]> {
-    return this.firestore.collection(collection).valueChanges({idField: 'id'}).pipe(
-      map((items: any[]) => {
-        return items.filter(item => {
-          const itemDate = item.date.toDate(); // แปลง timestamp เป็น Date
-          const formattedDate = itemDate.toLocaleDateString('th-TH', { day: '2-digit', month: '2-digit', year: 'numeric' });
-          return formattedDate === currentDate;
-        });
-      })
-    );
-  }
-
-  addDocument(data: any): Promise<void> {
-    const id = this.firestore.createId();
-    const expenseDate = new Date(data.date); // แปลงวันที่ที่ได้รับจากฟอร์ม
+    // ฟังก์ชันดึงข้อมูลจาก Firestore ตามวันที่
+    getDocument(collection: string, currentDate: string): Observable<any[]> {
+      return this.firestore.collection(collection).valueChanges({ idField: 'id' }).pipe(
+        map((items: any[]) => {
+          return items.filter(item => {
+            return item.date === currentDate; // เปรียบเทียบ date โดยตรงที่เป็น string
+          });
+        })
+      );
+    }
   
-    // แปลง amount ให้เป็น number
-    const amountAsNumber = parseFloat(data.amount);
+    // ฟังก์ชันเพิ่มข้อมูล
+    addDocument(data: any): Promise<void> {
+      const id = this.firestore.createId();
+      
+      // แปลง amount ให้เป็น number
+      const amountAsNumber = parseFloat(data.amount);
+      
+      // เพิ่มรายการใน expenses collection
+      return this.firestore.collection("expenses").doc(id).set({
+        ...data,
+        amount: amountAsNumber,
+        date: data.date // ใช้ date ที่เป็น string โดยตรง
+      });
+    }
   
-    // เพิ่มรายการใน expenses collection
-    return this.firestore.collection("expenses").doc(id).set({
-      ...data,
-      amount: amountAsNumber
-    });
-  }
-  
-
-  // อัปเดตเอกสาร
-  updateDocument(id: string, data: any): Promise<void> {
-    return this.firestore.collection("expenses").doc(id).update(data);
-  }
+    // ฟังก์ชันอัปเดตข้อมูล
+    updateDocument(id: string, data: any): Promise<void> {
+      return this.firestore.collection("expenses").doc(id).update({
+        ...data,
+        date: data.date // ใช้ date ที่เป็น string โดยตรง
+      });
+    }
 
   // ลบเอกสาร
   deleteDocument(id: string): Promise<void> {
